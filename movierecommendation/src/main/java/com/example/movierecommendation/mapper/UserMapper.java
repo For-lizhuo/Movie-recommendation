@@ -12,11 +12,11 @@ public interface UserMapper {
 
     List<User> queryUserList();
 
-    User queryUserById(int id);
+    User queryUserByUsername(String username);
 
-    int addUser(User user);
+    int addUser(String username,String password);
 
     int updateUser(User user);
 
-    int deleteUser(int id);
+    int deleteUser(String username);
 }

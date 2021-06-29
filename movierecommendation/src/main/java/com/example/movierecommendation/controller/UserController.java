@@ -2,48 +2,47 @@ package com.example.movierecommendation.controller;
 
 import com.example.movierecommendation.mapper.UserMapper;
 import com.example.movierecommendation.pojo.User;
+import com.example.movierecommendation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+@Controller
+//@RestController
+@RequestMapping(value = {"/user"})
 public class UserController {
 
     @Autowired
+    private UserService userService;
     private UserMapper userMapper;
 
-    @GetMapping("/queryUserList")
-    public List queryUserList(){
-        List<User> userList=userMapper.queryUserList();
-        for(User user:userList){
-            System.out.println(user);
+    @RequestMapping(value = {"/userLogin"}, method = RequestMethod.POST)
+    public String login(@RequestParam(value = "username") String username,
+                        @RequestParam(value = "password") String password) {
+        if(userService.queryUserByUsername(username)==null) {
+            return "redirect:userLogin.html";
         }
-        return userList;
+        else if(!userService.queryUserByUsername(username).getPassword().equals(password)) {
+            return "redirect:userLogin.html";
+        }
+        else
+            return "redirect:index.html";
     }
 
-    @GetMapping("/queryUserById")
-    public String queryUserById(){
-        return userMapper.queryUserById(2).getUsername();
-    }
-
-    @GetMapping("/addUser")
-    public String addUser(){
-        userMapper.addUser(new User(5,"amao","4567"));
-        return "ok";
-    }
-
-    @GetMapping("/updateUser")
-    public String updateUser(){
-        userMapper.updateUser(new User(5,"amao","45678"));
-        return "ok";
-    }
-
-    @GetMapping("/deleteUser")
-    public String deleteUser(){
-        userMapper.deleteUser(5);
-        return "ok";
+    @RequestMapping(value = {"/userRegister"}, method = RequestMethod.POST)
+    public String register(@RequestParam(value = "username") String username,
+                           @RequestParam(value = "password1") String password1,
+                           @RequestParam(value = "password2") String password2) {
+        if (!password1.equals(password2)) {
+            return "redirect:userRegister.html";
+        } else if(userService.queryUserByUsername(username)==null) {
+                int res = userService.addUser(username, password1);
+                return "redirect:userLogin.html";
+        }
+        return "redirect:userRegister.html";
     }
 
 }

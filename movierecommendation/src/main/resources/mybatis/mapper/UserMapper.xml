@@ -6,17 +6,17 @@
     <select id="queryUserList" resultType="User">
         select * from user
     </select>
-    <select id="queryUserById" resultType="User">
-        select * from user where id=#{id}
+    <select id="queryUserByUsername" resultType="User">
+        select * from user where username=#{username}
     </select>
     <insert id="addUser" parameterType="User">
-        insert into user (id,username,password) values(#{id},#{username},#{password})
+        insert into user (username,password) values(#{username},#{password})
     </insert>
     <update id="updateUser" parameterType="User">
-        update user set username=#{username},password=#{password} where id=#{id}
+        update user set password=#{password} where username=#{username}
     </update>
     <delete id="deleteUser" parameterType="int">
-        delete from user where id=#{id}
+        delete from user where username=#{username}
     </delete>
 
 </mapper>
