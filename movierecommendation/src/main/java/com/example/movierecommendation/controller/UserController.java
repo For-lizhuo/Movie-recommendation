@@ -10,39 +10,41 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Controller
-//@RestController
-@RequestMapping(value = {"/user"})
+//@Controller
+@RestController
+@CrossOrigin(origins = {"http://localhost:3000"},allowCredentials = "true",allowedHeaders = {"X-Custom-Header"},
+        maxAge = 3600L, methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD})
 public class UserController {
 
     @Autowired
     private UserService userService;
-    private UserMapper userMapper;
 
     @RequestMapping(value = {"/userLogin"}, method = RequestMethod.POST)
-    public String login(@RequestParam(value = "username") String username,
+    public String login(@RequestParam(value = "account") String account,
                         @RequestParam(value = "password") String password) {
-        if(userService.queryUserByUsername(username)==null) {
-            return "redirect:userLogin.html";
+        User user=userService.queryUserByAccount(account);
+        if(user==null) {
+            return "account doesn't exist";
         }
-        else if(!userService.queryUserByUsername(username).getPassword().equals(password)) {
-            return "redirect:userLogin.html";
+        else if(!user.getPassword().equals(password)) {
+            return "password error";
         }
         else
-            return "redirect:index.html";
+            return "login success";
     }
 
     @RequestMapping(value = {"/userRegister"}, method = RequestMethod.POST)
-    public String register(@RequestParam(value = "username") String username,
+    public String register(@RequestParam(value = "account") String account,
+                           @RequestParam(value = "username") String username,
                            @RequestParam(value = "password1") String password1,
                            @RequestParam(value = "password2") String password2) {
         if (!password1.equals(password2)) {
-            return "redirect:userRegister.html";
+            return "two passwords isn't same";
         } else if(userService.queryUserByUsername(username)==null) {
-                int res = userService.addUser(username, password1);
-                return "redirect:userLogin.html";
+                int res = userService.addUser(account,username, password1);
+                return "register success";
         }
-        return "redirect:userRegister.html";
+        return "account has existed";
     }
 
 }

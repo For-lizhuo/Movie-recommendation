@@ -14,15 +14,16 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper usermapper;
 
-    //注册新用户
-    @Override
-    public int addUser(String username, String password) {
-        return usermapper.addUser(username,password);
+    public int addUser(String account,String username, String password) {
+        return usermapper.addUser(account,username,password);
     }
 
-    @Override
     public User queryUserByUsername(String username) {
         return usermapper.queryUserByUsername(username);
+    }
+
+    public User queryUserByAccount(String account) {
+        return usermapper.queryUserByAccount(account);
     }
 
     public List<User> queryUserList(){

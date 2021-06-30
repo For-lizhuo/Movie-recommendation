@@ -14,7 +14,9 @@ public interface UserMapper {
 
     User queryUserByUsername(String username);
 
-    int addUser(String username,String password);
+    User queryUserByAccount(String account);
+
+    int addUser(String account,String username,String password);
 
     int updateUser(User user);
 
