@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public User queryUserByAccount(String account) {
-        return usermapper.queryUserByAccount(account);
+            return usermapper.queryUserByAccount(account);
     }
 
     public List<User> queryUserList(){

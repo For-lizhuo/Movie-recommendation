@@ -19,6 +19,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping(value = {"getUserList"})
+    public List<User> getUser()
+    {
+        return userService.queryUserList();
+    }
+
+    @RequestMapping(value = {"/getUser"}, method = RequestMethod.POST)
+    public User getUser(@RequestParam(value = "username") String username)
+    {
+        return userService.queryUserByUsername(username);
+    }
+
     @RequestMapping(value = {"/userLogin"}, method = RequestMethod.POST)
     public String login(@RequestParam(value = "account") String account,
                         @RequestParam(value = "password") String password) {
@@ -46,5 +58,6 @@ public class UserController {
         }
         return "account has existed";
     }
+
 
 }
