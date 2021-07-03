@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.movierecommendation.mapper.UserMapper">
+<mapper namespace="org.example.shixun.mapper.UserMapper">
     <select id="queryUserList" resultType="User">
         select * from user
     </select>
