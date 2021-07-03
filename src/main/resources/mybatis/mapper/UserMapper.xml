@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movierecommendation.mapper.UserMapper">
+    <select id="queryUserList" resultType="User">
+        select * from user
+    </select>
+    <select id="queryUserByUsername" resultType="User">
+        select * from user where username=#{username}
+    </select>
+
+    <select id="queryUserByAccount" resultType="User">
+        select * from user where account=#{account}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into user (account,username,password) values(#{account},#{username},#{password})
+    </insert>
+    <update id="updateUser" parameterType="User">
+        update user set username=#{username},password=#{password},profile=#{profile} where account=#{account}
+    </update>
+    <delete id="deleteUser" parameterType="int">
+        delete from user where username=#{username}
+    </delete>
+
+</mapper>
