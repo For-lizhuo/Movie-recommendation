@@ -1,4 +1,4 @@
-package org.example.shixun.entity;
+package org.example.shixun.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

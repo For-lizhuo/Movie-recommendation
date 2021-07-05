@@ -1,6 +1,6 @@
 package org.example.shixun.dao;
 
-import org.example.shixun.entity.User;
+import org.example.shixun.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

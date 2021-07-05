@@ -1,6 +1,6 @@
 package org.example.shixun.service;
 
-import org.example.shixun.entity.User;
+import org.example.shixun.domain.User;
 
 import java.util.List;
 

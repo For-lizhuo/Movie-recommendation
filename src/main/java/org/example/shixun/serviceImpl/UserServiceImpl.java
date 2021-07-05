@@ -1,6 +1,6 @@
 package org.example.shixun.serviceImpl;
 
-import org.example.shixun.entity.User;
+import org.example.shixun.domain.User;
 import org.example.shixun.dao.UserDao;
 import org.example.shixun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
