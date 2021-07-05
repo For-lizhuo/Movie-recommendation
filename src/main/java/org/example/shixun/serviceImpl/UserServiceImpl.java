@@ -1,7 +1,7 @@
 package org.example.shixun.serviceImpl;
 
 import org.example.shixun.entity.User;
-import org.example.shixun.mapper.UserMapper;
+import org.example.shixun.dao.UserDao;
 import org.example.shixun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,26 +12,26 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper usermapper;
+    private UserDao userDao;
 
     public int addUser(String account,String username, String password) {
-        return usermapper.addUser(account,username,password);
+        return userDao.addUser(account,username,password);
     }
 
     public User queryUserByUsername(String username) {
-        return usermapper.queryUserByUsername(username);
+        return userDao.queryUserByUsername(username);
     }
 
     public User queryUserByAccount(String account) {
-        return usermapper.queryUserByAccount(account);
+        return userDao.queryUserByAccount(account);
     }
 
     public List<User> queryUserList(){
-        return usermapper.queryUserList();
+        return userDao.queryUserList();
     };
 
     public int updateUser(User user){
-        return usermapper.updateUser(user);
+        return userDao.updateUser(user);
     };
 
 }

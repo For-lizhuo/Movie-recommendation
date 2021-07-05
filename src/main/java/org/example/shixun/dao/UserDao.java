@@ -1,4 +1,4 @@
-package org.example.shixun.mapper;
+package org.example.shixun.dao;
 
 import org.example.shixun.entity.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface UserMapper {
+public interface UserDao {
     List<User> queryUserList();
 
     User queryUserByUsername(String username);
