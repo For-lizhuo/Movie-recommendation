@@ -1,6 +1,7 @@
 package org.example.shixun.controller;
 
 import org.example.shixun.domain.User;
+import org.example.shixun.redis.RedisService;
 import org.example.shixun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    RedisService redisService;
 
     @GetMapping(value = {"userList"})
     public List<User> getUser()
