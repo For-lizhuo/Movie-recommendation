@@ -2,6 +2,7 @@ package org.example.shixun.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.example.shixun.domain.Movie;
+import org.example.shixun.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface MovieDao {
     int updateMovie(Movie movie);
 
     int deleteMovie(String username);
+    
 }
