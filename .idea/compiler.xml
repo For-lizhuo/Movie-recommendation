@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="movie-recommendation" />
         <module name="Movie-recommendation" />
+        <module name="movie-recommendation" />
+        <module name="Movie-recommendation-main" />
       </profile>
     </annotationProcessing>
   </component>
