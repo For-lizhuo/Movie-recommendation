@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public User queryUserByAccount(String account) {
-        return userDao.queryUserByAccount(account);
+        return userDao.queryUserByMobile(account);
     }
 
     public List<User> queryUserList(){

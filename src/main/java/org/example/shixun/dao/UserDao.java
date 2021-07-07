@@ -13,7 +13,7 @@ public interface UserDao {
 
     User queryUserByUsername(String username);
 
-    User queryUserByAccount(String account);
+    User queryUserByMobile(String mobile);
 
     int addUser(String account,String username,String password);
 

@@ -11,14 +11,14 @@
     </select>
 
     <select id="queryUserByAccount" resultType="User">
-        select * from user where account=#{account}
+        select * from user where mobile=#{mobile}
     </select>
 
     <insert id="addUser" parameterType="User">
-        insert into user (account,username,password) values(#{account},#{username},#{password})
+        insert into user (mobile,username,password) values(#{mobile},#{username},#{password})
     </insert>
     <update id="updateUser" parameterType="User">
-        update user set username=#{username},password=#{password},profile=#{profile} where account=#{account}
+        update user set username=#{username},password=#{password},profile=#{profile} where account=#{mobile}
     </update>
     <delete id="deleteUser" parameterType="int">
         delete from user where username=#{username}
