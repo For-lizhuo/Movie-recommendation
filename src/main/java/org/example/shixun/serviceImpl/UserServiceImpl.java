@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUser(user);
     };
 
+    public String login(){
+        //todo:
+        return null;
+    }
+
 }
