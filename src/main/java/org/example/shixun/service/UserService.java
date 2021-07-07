@@ -1,22 +1,25 @@
 package org.example.shixun.service;
 
 import org.example.shixun.domain.User;
+import org.example.shixun.vo.LoginVo;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UserService {
 
     //注册新用户
-    public int addUser(String account,String username,String password);
+    int addUser(String account, String username, String password);
 
-    public User queryUserByAccount(String account);
+    User queryUserByAccount(String account);
 
-    public User queryUserByUsername(String username);
+    User queryUserByUsername(String username);
 
-    public int updateUser(User user);
+    int updateUser(User user);
 
-    public List<User> queryUserList();
+    List<User> queryUserList();
 
     //todo:
-    public String login();
+    String login(HttpServletResponse response, LoginVo loginVo);
+
 }

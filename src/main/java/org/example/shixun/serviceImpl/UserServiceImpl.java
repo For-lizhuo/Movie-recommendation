@@ -3,9 +3,11 @@ package org.example.shixun.serviceImpl;
 import org.example.shixun.domain.User;
 import org.example.shixun.dao.UserDao;
 import org.example.shixun.service.UserService;
+import org.example.shixun.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service("userService")
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUser(user);
     };
 
-    public String login(){
+    public String login(HttpServletResponse response, LoginVo loginVo){
         //todo:
         return null;
     }
