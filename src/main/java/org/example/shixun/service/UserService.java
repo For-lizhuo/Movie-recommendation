@@ -16,4 +16,6 @@ public interface UserService {
     public int updateUser(User user);
 
     public List<User> queryUserList();
+
+    public String login();
 }
