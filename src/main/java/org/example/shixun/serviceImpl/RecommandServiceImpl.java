@@ -16,7 +16,7 @@ public class RecommandServiceImpl implements RecommandService {
     @Autowired
     private MovieDao movieDao;
     public List<Movie> recommand(User user){
-        String type=user.getLike_type();
+        String type=user.getLabel();
         return movieDao.queryUserByType(type);
     }
 }

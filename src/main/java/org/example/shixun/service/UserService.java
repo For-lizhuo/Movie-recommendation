@@ -2,16 +2,15 @@ package org.example.shixun.service;
 
 import org.example.shixun.domain.User;
 import org.example.shixun.vo.LoginVo;
+import org.example.shixun.vo.RegisterVo;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UserService {
 
-    //注册新用户
-    int addUser(String account, String username, String password);
 
-    User queryUserByAccount(String account);
+    User queryUserByMobile(String mobile);
 
     User queryUserByUsername(String username);
 
@@ -19,7 +18,8 @@ public interface UserService {
 
     List<User> queryUserList();
 
-    //todo:
     String login(HttpServletResponse response, LoginVo loginVo);
+
+    void register(HttpServletResponse response, RegisterVo registerVo);
 
 }

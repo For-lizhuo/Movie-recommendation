@@ -10,18 +10,18 @@
         select * from user where username=#{username}
     </select>
 
-    <select id="queryUserByAccount" resultType="User">
+    <select id="queryUserByMobile" resultType="User">
         select * from user where mobile=#{mobile}
     </select>
 
     <insert id="addUser" parameterType="User">
-        insert into user (mobile,username,password) values(#{mobile},#{username},#{password})
+        insert into user (mobile,username,password,label) values(#{mobile},#{username},#{password},#{label})
     </insert>
     <update id="updateUser" parameterType="User">
-        update user set username=#{username},password=#{password},profile=#{profile} where account=#{mobile}
+        update user set username=#{username},password=#{password},profile=#{profile} where mobile=#{mobile}
     </update>
     <delete id="deleteUser" parameterType="int">
-        delete from user where username=#{username}
+        delete from user where mobile=#{mobile}
     </delete>
 
 </mapper>

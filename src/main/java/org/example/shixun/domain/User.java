@@ -14,5 +14,5 @@ public class User {
     private String password;
     private String profile;
     private String picture;
-    private String like_type;
+    private String label;
 }

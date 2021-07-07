@@ -2,60 +2,58 @@ package org.example.shixun.controller;
 
 import org.example.shixun.domain.User;
 import org.example.shixun.redis.RedisService;
+import org.example.shixun.result.Result;
 import org.example.shixun.service.UserService;
+import org.example.shixun.vo.LoginVo;
+import org.example.shixun.vo.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
+
 //@Controller
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
     RedisService redisService;
 
     @GetMapping(value = {"userList"})
-    public List<User> getUser()
-    {
+    public List<User> getUser() {
         return userService.queryUserList();
     }
 
     @RequestMapping(value = {"/getUser"}, method = RequestMethod.POST)
-    public User getUser(@RequestParam(value = "username") String username)
-    {
+    public User getUser(@RequestParam(value = "username") String username) {
         return userService.queryUserByUsername(username);
     }
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public String login(@RequestParam(value = "account") String account,
-                        @RequestParam(value = "password") String password) {
-        User user=userService.queryUserByAccount(account);
-        if(user==null) {
-            return "account doesn't exist";
-        }
-        else if(!user.getPassword().equals(password)) {
-            return "password error";
-        }
-        else
-            return "login success";
+    //登录接口，返回token
+    @RequestMapping("/login")
+    @ResponseBody
+    public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
+        //登录
+        String token = userService.login(response, loginVo);
+        return Result.success(token);
     }
 
-    @RequestMapping("/register")
-    public String register(@RequestParam(value = "account") String account,
-                           @RequestParam(value = "username") String username,
-                           @RequestParam(value = "password") String password,
-                           @RequestParam(value = "password2") String password2) {
-        if (!password.equals(password2)) {
-            return "password error";
-        } else if(userService.queryUserByUsername(username)==null) {
-            int res = userService.addUser(account,username, password);
-            return "register success";
-        }
-        return "account has existed";
+    //注册接口
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @ResponseBody
+    public Result<String> doRegister(HttpServletResponse response,  @RequestBody @Valid RegisterVo registerVo) {
+        //注册
+        userService.register(response, registerVo);
+
+        return Result.success("success");
     }
 
     @RequestMapping("/updateUser")
