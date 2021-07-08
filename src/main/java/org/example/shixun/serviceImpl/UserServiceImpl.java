@@ -1,5 +1,6 @@
 package org.example.shixun.serviceImpl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.example.shixun.domain.User;
 import org.example.shixun.dao.UserDao;
 import org.example.shixun.exception.GlobalException;
@@ -95,5 +96,18 @@ public class UserServiceImpl implements UserService {
         String calcPass = MD5Util.formPassToDBPass(formPass, salt);
         userDao.addUser(registerVo.getMobile(),registerVo.getUsername(),
                 calcPass,registerVo.getLabel());
+    }
+
+    @Override
+    public User getByToken(HttpServletResponse response, String token) {
+        if(StringUtils.isEmpty(token)) {
+            return null;
+        }
+        User user = redisService.get(UserKey.token, token, User.class);
+        //延长有效期
+        if(user != null) {
+            addCookie(response, token, user);
+        }
+        return user;
     }
 }

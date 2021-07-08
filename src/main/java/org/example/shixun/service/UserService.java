@@ -22,4 +22,6 @@ public interface UserService {
 
     void register(HttpServletResponse response, RegisterVo registerVo);
 
+    User getByToken(HttpServletResponse response, String token);
+
 }
