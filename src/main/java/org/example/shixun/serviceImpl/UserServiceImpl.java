@@ -86,7 +86,10 @@ public class UserServiceImpl implements UserService {
         if(user != null){
             throw  new GlobalException(CodeMsg.MOBILE_DUPLICATED);
         }
+        String formPass = registerVo.getPassword();
+        String salt = MD5Util.salt;
+        String calcPass = MD5Util.formPassToDBPass(formPass, salt);
         userDao.addUser(registerVo.getMobile(),registerVo.getUsername(),
-                registerVo.getPassword(),registerVo.getLabel());
+                calcPass,registerVo.getLabel());
     }
 }
