@@ -8,6 +8,7 @@ import org.example.shixun.service.RecommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("RecommandService")
@@ -17,6 +18,14 @@ public class RecommandServiceImpl implements RecommandService {
     private MovieDao movieDao;
     public List<Movie> recommand(User user){
         String type=user.getLabel();
-        return movieDao.queryUserByType(type);
+        System.out.println(type);
+        String[] split = type.split(",");
+        List<Movie> movieList = new ArrayList<>();
+        System.out.println(split.length);
+        for(int i=0;i<split.length;i++) {
+            System.out.println(split[i]);
+            movieList.addAll(movieDao.queryUserByType(split[i]));
+        }
+        return movieList;
     }
 }
