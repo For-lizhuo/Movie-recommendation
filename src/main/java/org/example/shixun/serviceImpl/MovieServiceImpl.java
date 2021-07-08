@@ -18,6 +18,8 @@ public class MovieServiceImpl implements MovieService {
         return movieDao.queryMovieList();
     };
 
+    public List<Movie> searchMovieList(){return movieDao.searchMovieList();};
+
     public List<Movie> queryMovieByTitle(String title){
         return movieDao.queryUserByTitle(title);
     };

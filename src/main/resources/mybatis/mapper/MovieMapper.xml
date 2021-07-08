@@ -11,6 +11,10 @@
         select distinct title,img,actor,score,link,source from movie where title=#{title}
     </select>
 
+    <select id="searchMovieList" resultType="Movie">
+        select distinct title,img,actor,score,link,source from movie
+    </select>
+
     <select id="queryUserByTitle2" resultType="Movie">
         select distinct title,img,actor,score,link,source FROM movie where title like concat(concat('%', #{text}), '%');
     </select>

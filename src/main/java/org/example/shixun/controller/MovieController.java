@@ -22,6 +22,12 @@ public class MovieController {
         return movieService.queryMovieList();
     }
 
+    @GetMapping(value = {"searchMovieList"})
+    public List<Movie> searchMovie()
+    {
+        return movieService.searchMovieList();
+    }
+
     @RequestMapping(value = {"/searchByType"}, method = RequestMethod.POST)
     public List<Movie> searchMovieByType(@RequestParam(value = "type") String type)
     {
