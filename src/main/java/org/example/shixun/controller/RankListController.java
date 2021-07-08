@@ -10,7 +10,7 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/rank")
-
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class RankListController {
     @Autowired
     private RankListService rankListService;

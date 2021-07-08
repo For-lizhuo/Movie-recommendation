@@ -24,4 +24,6 @@ public interface UserService {
 
     User getByToken(HttpServletResponse response, String token);
 
+    int addUserInfo(User user);
+
 }

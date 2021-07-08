@@ -2,10 +2,12 @@ package org.example.shixun.controller;
 
 import org.example.shixun.domain.User;
 import org.example.shixun.redis.RedisService;
+import org.example.shixun.result.CodeMsg;
 import org.example.shixun.result.Result;
 import org.example.shixun.service.UserService;
 import org.example.shixun.vo.LoginVo;
 import org.example.shixun.vo.RegisterVo;
+import org.example.shixun.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,7 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -60,6 +63,36 @@ public class UserController {
     public String updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return "success";
+    }
+
+    @RequestMapping("/userPage")
+    public Result<UserPageVo> getUserPage(User user){
+        if(user == null){
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        UserPageVo userPageVo = new UserPageVo();
+
+        userPageVo.setLabel(user.getLabel());
+        userPageVo.setPicture(user.getPicture());
+        userPageVo.setProfile(user.getProfile());
+        userPageVo.setUsername(user.getUsername());
+
+        return Result.success(userPageVo);
+    }
+
+    @RequestMapping("/setUserPage")
+    public Result<String> setUserPage(User user, UserPageVo userPageVo){
+        if(user == null){
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        user.setLabel(userPageVo.getLabel());
+        user.setUsername(userPageVo.getUsername());
+        user.setPicture(userPageVo.getPicture());
+        user.setProfile(userPageVo.getProfile());
+
+        userService.addUserInfo(user);
+
+        return Result.success("完善信息成功");
     }
 
 

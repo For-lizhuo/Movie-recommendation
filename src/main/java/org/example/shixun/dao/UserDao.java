@@ -1,8 +1,10 @@
 package org.example.shixun.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.example.shixun.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.example.shixun.vo.UserPageVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +23,6 @@ public interface UserDao {
     int updateUser(User user);
 
     int deleteUser(String username);
+
+    int addUserInfo(User user);
 }

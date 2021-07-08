@@ -110,4 +110,10 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+
+    @Override
+    public int addUserInfo(User user){
+        return userDao.addUserInfo(user);
+    }
+
 }
