@@ -8,11 +8,15 @@
     </select>
 
     <select id="queryUserByTitle" resultType="Movie">
-        select * from movie where title=#{title}
+        select distinct title,img,actor,score,link,source from movie where title=#{title}
+    </select>
+
+    <select id="searchMovieList" resultType="Movie">
+        select distinct title,img,actor,score,link,source from movie
     </select>
 
     <select id="queryUserByTitle2" resultType="Movie">
-        select * FROM movie where title like concat(concat('%', #{text}), '%');
+        select distinct title,img,actor,score,link,source FROM movie where title like concat(concat('%', #{text}), '%');
     </select>
 
     <select id="queryUserByType" resultType="Movie">
@@ -28,4 +32,7 @@
     <delete id="deleteMovie" parameterType="int">
         delete from movie where title=#{title}
     </delete>
+    <select id="recommandMovie" resultType="Movie">
+        select * from movie,user where user.like_type=movie.type
+    </select>
 </mapper>
