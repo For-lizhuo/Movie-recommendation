@@ -19,7 +19,6 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -62,4 +61,6 @@ public class UserController {
         userService.updateUser(user);
         return "success";
     }
+
+
 }
