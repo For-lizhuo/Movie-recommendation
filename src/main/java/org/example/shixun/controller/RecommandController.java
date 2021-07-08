@@ -21,7 +21,9 @@ public class RecommandController {
     @RequestMapping(value = {"/recommand"}, method = RequestMethod.POST)
     public List<Movie> recommand(@RequestBody User user){
         List newList=recommandService.recommand(user);
-        Collections.shuffle(newList);
+        if(newList.size()<8)
+            return newList;
+        else Collections.shuffle(newList);
         return newList.subList(0,8);
     };
 }
