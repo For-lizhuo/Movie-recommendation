@@ -38,7 +38,7 @@ public class UserController {
     }
 
     //登录接口，返回token
-    @RequestMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
         //登录
@@ -53,7 +53,7 @@ public class UserController {
         //注册
         userService.register(response, registerVo);
 
-        return Result.success("success");
+        return Result.success("register success");
     }
 
     @RequestMapping("/updateUser")
