@@ -43,6 +43,10 @@ public class UserServiceImpl implements UserService {
     };
 
     public int updateUser(User user){
+        String formPass=user.getPassword();
+        String salt = MD5Util.salt;
+        String calcPass = MD5Util.formPassToDBPass(formPass, salt);
+        user.setPassword(calcPass);
         return userDao.updateUser(user);
     };
 
