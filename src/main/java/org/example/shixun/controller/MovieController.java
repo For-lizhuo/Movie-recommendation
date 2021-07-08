@@ -10,6 +10,7 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class MovieController {
     @Autowired
     private MovieService movieService;
@@ -19,6 +20,18 @@ public class MovieController {
     public List<Movie> getMovie()
     {
         return movieService.queryMovieList();
+    }
+
+    @GetMapping(value = {"getMovieList"})
+    public List<Movie> getMovie2()
+    {
+        return movieService.queryMovieList2();
+    }
+
+    @GetMapping(value = {"searchMovieList"})
+    public List<Movie> searchMovie()
+    {
+        return movieService.searchMovieList();
     }
 
     @RequestMapping(value = {"/searchByType"}, method = RequestMethod.POST)

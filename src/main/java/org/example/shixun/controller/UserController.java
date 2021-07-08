@@ -19,6 +19,7 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -40,7 +41,7 @@ public class UserController {
     //登录接口，返回token
     @PostMapping("/login")
     @ResponseBody
-    public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
+    public Result<String> doLogin(HttpServletResponse response,@RequestBody @Valid LoginVo loginVo) {
         //登录
         String token = userService.login(response, loginVo);
         return Result.success(token);

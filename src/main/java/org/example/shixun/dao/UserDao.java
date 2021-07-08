@@ -1,5 +1,6 @@
 package org.example.shixun.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.example.shixun.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ public interface UserDao {
 
     User queryUserByMobile(String mobile);
 
-    int addUser(String account,String username,String password,String label);
+    int addUser(@Param("mobile") String mobile,@Param("username") String username,@Param("password") String password,@Param("label") String label);
 
     int updateUser(User user);
 

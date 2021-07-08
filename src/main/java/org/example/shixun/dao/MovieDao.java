@@ -12,6 +12,8 @@ import java.util.List;
 public interface MovieDao {
     List<Movie> queryMovieList();
 
+    List<Movie> searchMovieList();
+
     List<Movie> queryUserByTitle(String title);
 
     List<Movie> queryUserByTitle2(String title);

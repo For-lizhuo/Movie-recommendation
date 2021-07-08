@@ -18,7 +18,7 @@
         insert into user (mobile,username,password,label) values(#{mobile},#{username},#{password},#{label})
     </insert>
     <update id="updateUser" parameterType="User">
-        update user set username=#{username},password=#{password},profile=#{profile} where mobile=#{mobile}
+        update user set username=#{username},password=#{password},profile=#{profile},label=#{label} where mobile=#{mobile}
     </update>
     <delete id="deleteUser" parameterType="int">
         delete from user where mobile=#{mobile}

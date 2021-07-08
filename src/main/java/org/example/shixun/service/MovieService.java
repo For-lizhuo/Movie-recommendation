@@ -8,6 +8,10 @@ public interface MovieService {
 
     public List<Movie> queryMovieList();
 
+    public List<Movie> searchMovieList();
+
+    public List<Movie> queryMovieList2();
+
     public List<Movie> queryMovieByTitle(String title);
 
     public List<Movie> queryMovieByTitle2(String title);
