@@ -11,9 +11,6 @@ import org.example.shixun.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
@@ -66,6 +63,7 @@ public class UserController {
     }
 
     @RequestMapping("/userPage")
+    @ResponseBody
     public Result<UserPageVo> getUserPage(User user){
         if(user == null){
             return Result.error(CodeMsg.SESSION_ERROR);
@@ -80,7 +78,8 @@ public class UserController {
         return Result.success(userPageVo);
     }
 
-    @RequestMapping("/setUserPage")
+    @RequestMapping(value = "/setUserPage",method = RequestMethod.POST)
+    @ResponseBody
     public Result<String> setUserPage(User user, UserPageVo userPageVo){
         if(user == null){
             return Result.error(CodeMsg.SESSION_ERROR);
