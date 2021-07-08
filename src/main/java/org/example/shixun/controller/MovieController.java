@@ -22,6 +22,12 @@ public class MovieController {
         return movieService.queryMovieList();
     }
 
+    @GetMapping(value = {"getMovieList"})
+    public List<Movie> getMovie2()
+    {
+        return movieService.queryMovieList2();
+    }
+
     @GetMapping(value = {"searchMovieList"})
     public List<Movie> searchMovie()
     {
