@@ -13,6 +13,7 @@ import java.util.List;
 
 //@Controller
 @RestController
+@CrossOrigin(origins = "http://localhost:3000",maxAge = 3600)
 public class RecommandController {
     @Autowired
     private RecommandService recommandService;

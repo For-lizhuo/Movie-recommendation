@@ -10,6 +10,7 @@ import java.util.List;
 //@Controller
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin(origins = "http://localhost:3000",maxAge = 3600)
 public class MovieController {
     @Autowired
     private MovieService movieService;
