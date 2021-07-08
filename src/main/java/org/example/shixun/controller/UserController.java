@@ -38,7 +38,7 @@ public class UserController {
     }
 
     //登录接口，返回token
-    @RequestMapping("/do_login")
+    @RequestMapping("/login")
     @ResponseBody
     public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
         //登录
