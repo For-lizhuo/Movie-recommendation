@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 
 public class LoginVo {
 
-  /*  @NotNull
-    @IsMobile*/
+    @NotNull
+    @IsMobile
     private String mobile;
 
-   /* @NotNull
-    @Length(min=8)*/
+    @NotNull
+    @Length(min=8)
     private String password;
 
     public String getMobile() {
